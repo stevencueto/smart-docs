@@ -1,10 +1,20 @@
 import './App.css';
-import React from 'react';
+import React, { useState, useEffect, useMemo } from 'react'
+import "bootstrap/dist/css/bootstrap.min.css"
 import WebsiteContainer from './Components/WebsiteContainer';
+import UserContext from './context/UserContex';
 function App() {
+  const [user, setUser]= useState(null)
+  const findUser = ()=>{
+    const locate =localStorage.getItem('docs-user')
+    if(locate) return setUser(JSON.parse(locate))
+  }
+  const provValue = useMemo(()=>({user, setUser, findUser}), [user, setUser])
   return (
     <div className="App">
-      <WebsiteContainer/>
+      <UserContext.Provider value={provValue}>
+        <WebsiteContainer/>
+      </UserContext.Provider>
     </div>
   );
 }

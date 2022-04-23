@@ -1,0 +1,18 @@
+
+.register-intructions{
+    padding: .3em;
+    margin-bottom: .5em;
+    width: 300px;
+    font-size: 1em;
+    text-align: center;
+}
+.error-mesage{
+    color: rgba(235, 26, 26, 0.74);
+    margin-top: 1.8em;
+    padding: 10px;
+    text-align: center;
+}
+
+.heading{
+    font-size: 2em;
+}
