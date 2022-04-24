@@ -3,8 +3,8 @@ import Quill from "quill"
 import "quill/dist/quill.snow.css"
 import { io } from "socket.io-client"
 import { useParams } from "react-router-dom"
-import toolbarOptions from "./toolBarOptions"
 import socketLink from "../helpers/socketDoc"
+import toolbarOptions from './toolBarOptions'
 import './styles.css'
 export default function DocsEditor() {
   const {id} = useParams()
