@@ -40,6 +40,7 @@ const Wrapper = () => {
     }
   }
   const newDocAPICall = async()=>{
+    console.log(newDoc)
     try {
       const req = await fetch(`${docsLink}doc`,  {
         method: 'POST',
