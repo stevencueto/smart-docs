@@ -21,6 +21,7 @@ const Wrapper = () => {
       ...newDoc,
       [name]: value
     })
+    console.log(newDoc)
   }
   const populateFunction = async()=>{
     try {
