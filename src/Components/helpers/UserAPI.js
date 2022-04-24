@@ -1,7 +1,7 @@
 let userLink
 
 const apiUrls = {
-    production: "https://adventureseekerapi.herokuapp.com/",
+    production: "https://smartdocxs-api-auth.herokuapp.com/",
     development: "http://localhost:3001/"
 }
 

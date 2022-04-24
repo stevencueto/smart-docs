@@ -1,7 +1,7 @@
 let docsLink
 
 const apiUrls = {
-    production: "https://adventureseekerapi.herokuapp.com/",
+    production: "https://smart-docs-doc-server.herokuapp.com/",
     development: "http://localhost:3003/"
 }
 
