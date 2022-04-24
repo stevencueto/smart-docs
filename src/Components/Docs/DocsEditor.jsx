@@ -7,7 +7,7 @@ import toolbarOptions from "./toolBarOptions"
 import socketLink from "../helpers/socketDoc"
 import './styles.css'
 export default function DocsEditor() {
-  const { id: documentId } = useParams()
+  const {id} = useParams()
   const [socket, setSocket] = useState()
   const [editor, setEditor] = useState()
 
@@ -24,22 +24,22 @@ export default function DocsEditor() {
     if (!socket || !editor) return
 
     socket.once('send-document', document => {
-      editor.setContents(document?.data)
+      editor.setContents(document.data)
       editor.enable()
     })
 
-    socket.emit('find-document', '626251ffed1c710ec6581522')
-  }, [socket, editor, documentId])
+    socket.emit('find-document', id)
+  }, [socket, editor, id])
 
   useEffect(() => {
     if (socket == null || editor == null) return
 
-    const interval = setInterval(() => {
+    const socketC = setInterval(() => {
       socket.emit('save-document', editor.getContents())
     }, 1000)
 
     return () => {
-      clearInterval(interval)
+      clearInterval( socketC )
     }
   }, [socket, editor])
 

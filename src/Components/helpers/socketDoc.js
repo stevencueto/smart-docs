@@ -1,7 +1,7 @@
 let socketLink
 
 const apiUrls = {
-    production: "https://adventureseekerapi.herokuapp.com/",
+    production: "https://smart-docs-socket-data.herokuapp.com/",
     development: "http://localhost:3002/"
 }
 

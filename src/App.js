@@ -1,7 +1,7 @@
 import './App.css';
 import React, { useState, useEffect, useMemo } from 'react'
 import "bootstrap/dist/css/bootstrap.min.css"
-import WebsiteContainer from './Components/WebsiteContainer';
+import Wrapper from './components/Wrapper';
 import UserContext from './context/UserContex';
 function App() {
   const [user, setUser]= useState(null)
@@ -13,7 +13,7 @@ function App() {
   return (
     <div className="App">
       <UserContext.Provider value={provValue}>
-        <WebsiteContainer/>
+        <Wrapper/>
       </UserContext.Provider>
     </div>
   );
