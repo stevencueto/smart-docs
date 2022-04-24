@@ -1,7 +1,7 @@
 import './App.css';
 import React, { useState, useEffect, useMemo } from 'react'
 import "bootstrap/dist/css/bootstrap.min.css"
-import Wrapper from './components/Wrapper';
+import Wrapper from './Components/Wrapper';
 import UserContext from './context/UserContex';
 function App() {
   const [user, setUser]= useState(null)
