@@ -1,5 +1,5 @@
 
-import { useEffect, useState, useMemo} from 'react';
+import React, { useEffect, useState, useMemo} from 'react';
 import {Route, Routes , useNavigate} from 'react-router-dom'
 import DocsEditor from './Docs/DocsEditor1';
 import DocsContext from '../context/DocsContext';
