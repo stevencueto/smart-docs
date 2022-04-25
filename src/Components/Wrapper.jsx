@@ -119,9 +119,9 @@ const Wrapper = () => {
         <Routes>
           <Route path="/" exact element={<Dashboard deleteDocAPICall={deleteDocAPICall} editDocAPICall={editDocAPICall} docs={docs}/>} />
           <Route path="/new" exact element={<NewDoc newDocAPICall={newDocAPICall} newDoc={newDoc} handleChange={handleChange}/>} />
-          <Route path="/edit" exact element={<SecondEditor/> } />
+          {/* <Route path="/edit" exact element={<SecondEditor/> } /> */}
           <Route path="/register" exact element={<Register/>} />
-          <Route path="/documents/:id"  element={<DocsEditor/>} />
+          <Route path="/documents/:id"  element={<SecondEditor/>} />
         </Routes>
    </ThemeContextPer.Provider>
 
