@@ -16,44 +16,37 @@ function SecondEditor() {
         console.log(editorRef.current.getContent())
     }
 
-    const findDoc = () =>{
-        socket.once('send-document', document => {
-            console.log(document)
-            setEditorState(document.data)
-        })
-
-        socket.emit('find-document', id)
-
+    const handleChange = (change) =>{
+        setEditorState(change)
+        socket.emit('send-changes', change)
     }
-
-    useEffect(() => {
-        if(!findingDoc) return
-        findDoc()
-
-      }, [findingDoc])
-
-      useEffect(()=>{
-        if (!socket || !editorState) return
-        const handler = () => {
-            setEditorState(editorRef.current.getContent())
-        }
-        socket.on('receive-changes', handler)
-    
-        return () => {
-          socket.off('receive-changes', handler)
-        }
-
-    },[editorState, socket])
-
     useEffect(() => {
         const socketConection = io(socketLink, { transports : ['websocket'] })
         setSocket(socketConection)
-        setFindingDoc(true)
     
         return () => {
           socketConection.disconnect()
         }
       }, [])
+    useEffect(() => {
+        if(!socket) return
+        socket.once('send-document', document => {
+            console.log('found')
+            setEditorState(document.data)
+        })
+        socket.emit('find-document', id)
+      }, [socket])
+
+
+      useEffect(()=>{
+        if (!socket || !editorState) return
+            socket.on('receive-changes', change =>{
+                setEditorState(change)
+                console.log('te')
+            })
+            console.log('te')
+
+    },[editorState, socket])
 
       useEffect(() => {
         if (!socket|| !editorState) return
@@ -68,10 +61,10 @@ function SecondEditor() {
   return (
     <div>
         <Editor
+        ref={editorRef}
         value={editorState}
-        onEditorChange={(newValue, editor) => setEditorState(newValue)}
+        onEditorChange={(newValue, editor) => handleChange(newValue)}
         onInit={(evt, editor)=>editorRef.current = editor}
-        initialValue='<p>Loading Document</p>'
 
         />
         <button onClick={getVal}>vlivk</button>
