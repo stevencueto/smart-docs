@@ -1,9 +1,13 @@
-import React from 'react'
+import {useContext} from 'react'
 import {Link} from 'react-router-dom'
 import {EditDoc} from './EditDoc.jsx'
+import { Container } from '../StyledComponents/Container.styled.jsx'
+import ThemeContextPer from '../../context/DocsContext.jsx'
+
 function Dashboard(props) {
+  const {theme} = useContext(ThemeContextPer)
   return (
-    <div>
+    <Container bg={theme}>
       <ul>
       </ul>
         {props.docs.map((doc)=>{
@@ -14,7 +18,7 @@ function Dashboard(props) {
             <button onClick={()=>props.deleteDocAPICall(doc)}>Delete?</button>
           </li>
         })}
-    </div>
+    </Container>
   )
 }
 

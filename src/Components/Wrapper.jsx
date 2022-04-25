@@ -1,11 +1,13 @@
 
-import React, { useEffect, useMemo} from 'react';
+import React, { useEffect, useMemo, useState} from 'react';
 import {Route, Routes , useNavigate} from 'react-router-dom'
 import DocsEditor  from './Docs/DocsEditor1'
 import Dashboard from './Dahsboard/Dashboard';
 import Register from './register/Register';
 import docsLink from './helpers/docsAPI';
 import { NewDoc } from './Dahsboard/NewDoc';
+import ThemeContextPer from '../context/DocsContext';
+import SecondEditor from './Dahsboard/secondEditor';
 const Wrapper = () => {
   let navigate = useNavigate();
   const [docs, setDocs]= React.useState([])
@@ -100,17 +102,29 @@ const Wrapper = () => {
       console.log(error)
     }
   }
+  const [theme, setTheme] = useState('Black')
+  const toggleTheme =()=>{
+    if(theme === "blakc"){
+      setTheme('white')
+    }else{
+      setTheme('black')
+    }
+  }
+  const provValue = useMemo(()=>({theme, toggleTheme}), [theme, setTheme, toggleTheme])
   useEffect(()=>{
     populateFunction()
   }, [])
-  const provValue = useMemo(()=>({newDocAPICall, populateFunction, editDocAPICall}), [])
   return (
+    <ThemeContextPer.Provider value={provValue}>
         <Routes>
           <Route path="/" exact element={<Dashboard deleteDocAPICall={deleteDocAPICall} editDocAPICall={editDocAPICall} docs={docs}/>} />
           <Route path="/new" exact element={<NewDoc newDocAPICall={newDocAPICall} newDoc={newDoc} handleChange={handleChange}/>} />
+          <Route path="/edit" exact element={<SecondEditor/> } />
           <Route path="/register" exact element={<Register/>} />
           <Route path="/documents/:id"  element={<DocsEditor/>} />
         </Routes>
+   </ThemeContextPer.Provider>
+
   )
 }
 

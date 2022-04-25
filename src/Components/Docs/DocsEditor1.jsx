@@ -31,6 +31,8 @@ export default function DocsEditor() {
     socket.emit('find-document', id)
   }, [socket, editor, id])
 
+  
+
   useEffect(() => {
     if (socket == null || editor == null) return
 
