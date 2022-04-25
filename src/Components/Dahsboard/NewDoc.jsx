@@ -1,10 +1,8 @@
 import React, {useContext} from 'react'
-import DocsContext from '../../context/DocsContext'
 export const NewDoc = (props) => {
-    const { newDocAPICall } = useContext(DocsContext)
     const handleSumbit = (e)=>{
       e.preventDefault()
-      newDocAPICall()
+      props.newDocAPICall(props.newDoc)
     }
   return (
     <div>

@@ -1,7 +1,5 @@
 import React, {useContext, useState} from 'react'
-import DocsContext from '../../context/DocsContext'
 export const EditDoc = (props) => {
-    const { editDocAPICall } = useContext(DocsContext)
     const [editDoc, setEditDoc]= useState({
         ...props.doc,
     })
@@ -15,7 +13,7 @@ export const EditDoc = (props) => {
     }
     const handleSumbit = (e)=>{
       e.preventDefault()
-      editDocAPICall(editDoc)
+      props.editDocAPICall(editDoc)
     }
   return (
     <div>

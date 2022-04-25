@@ -1,17 +1,15 @@
 
-import React, { useEffect, useState, useMemo} from 'react';
+import React, { useEffect, useMemo} from 'react';
 import {Route, Routes , useNavigate} from 'react-router-dom'
-import DocsEditor from './Docs/DocsEditor1';
-import DocsContext from '../context/DocsContext';
-import React from 'react';
+import DocsEditor  from './Docs/DocsEditor1'
 import Dashboard from './Dahsboard/Dashboard';
 import Register from './register/Register';
 import docsLink from './helpers/docsAPI';
 import { NewDoc } from './Dahsboard/NewDoc';
 const Wrapper = () => {
   let navigate = useNavigate();
-  const [docs, setDocs]= useState([])
-  const [newDoc, setNewDoc]= useState({
+  const [docs, setDocs]= React.useState([])
+  const [newDoc, setNewDoc]= React.useState({
     title: "",
     type: "docs"
   })
@@ -39,12 +37,12 @@ const Wrapper = () => {
       console.log(error)
     }
   }
-  const newDocAPICall = async()=>{
-    console.log(newDoc)
+  const newDocAPICall = async(doc)=>{
+    console.log(doc)
     try {
       const req = await fetch(`${docsLink}doc`,  {
         method: 'POST',
-        body: JSON.stringify(newDoc),
+        body: JSON.stringify(doc),
         headers: {
           'x-access-token': localStorage.getItem('docs-token'),
           'Content-Type': 'application/json',
@@ -75,9 +73,28 @@ const Wrapper = () => {
       })
       const res = await req.json()
       if(res.success === true){
-        const newDocs = docs.filter(doc => doc._id !== edit._id)
+        const newDocs = docs.map(doc => doc._id !== edit._id ? doc : edit)
         console.log(newDocs)
-        setDocs([res.data, ...newDocs])
+        setDocs(newDocs)
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  const deleteDocAPICall = async(doc)=>{
+    try {
+      const req = await fetch(`${docsLink}doc/${doc._id}`,  {
+        method: 'DELETE',
+        body: JSON.stringify(doc),
+        headers: {
+          'x-access-token': localStorage.getItem('docs-token'),
+          'Content-Type': 'application/json',
+        }
+      })
+      const res = await req.json()
+      if(res.success === true){
+        const newDocs = docs.filter(one => one._id !== doc._id)
+        setDocs(newDocs)
       }
     } catch (error) {
       console.log(error)
@@ -88,14 +105,12 @@ const Wrapper = () => {
   }, [])
   const provValue = useMemo(()=>({newDocAPICall, populateFunction, editDocAPICall}), [])
   return (
-    <DocsContext.Provider value={provValue}>
         <Routes>
-          <Route path="/" exact element={<Dashboard docs={docs}/>} />
-          <Route path="/new" exact element={<NewDoc newDoc={newDoc} handleChange={handleChange}/>} />
+          <Route path="/" exact element={<Dashboard deleteDocAPICall={deleteDocAPICall} editDocAPICall={editDocAPICall} docs={docs}/>} />
+          <Route path="/new" exact element={<NewDoc newDocAPICall={newDocAPICall} newDoc={newDoc} handleChange={handleChange}/>} />
           <Route path="/register" exact element={<Register/>} />
           <Route path="/documents/:id"  element={<DocsEditor/>} />
         </Routes>
-      </DocsContext.Provider>
   )
 }
 

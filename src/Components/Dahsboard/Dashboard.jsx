@@ -5,13 +5,13 @@ function Dashboard(props) {
   return (
     <div>
       <ul>
-
       </ul>
         {props.docs.map((doc)=>{
           return <li key={doc._id}>
             {doc.title}
             <Link to={`/documents/${doc.data}`}>{doc.title}</Link>
-            <EditDoc key={doc.data} doc={doc}></EditDoc>
+            <EditDoc key={doc.data} doc={doc} editDocAPICall={props.editDocAPICall}></EditDoc>
+            <button onClick={()=>props.deleteDocAPICall(doc)}>Delete?</button>
           </li>
         })}
     </div>
