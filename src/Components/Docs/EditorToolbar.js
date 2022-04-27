@@ -5,13 +5,6 @@ import { Quill } from "react-quill";
 
 const CustomHeart = () => <span>♥</span>;
 
-function insertHeart() {
-  const cursorPosition = this.quill.getSelection().index;
-  this.quill.insertText(cursorPosition, "♥");
-  this.quill.setSelection(cursorPosition + 1);
-}
-
-
 const CustomUndo = () => (
   <svg viewBox="0 0 18 18">
     <polygon className="ql-fill ql-stroke" points="6 10 4 12 2 10 6 10" />
@@ -60,23 +53,18 @@ Quill.register(Font, true);
 
 // Modules object for setting up the Quill editor
 export const modules = {
-  toolbar: [
-    [{ header: "1" }, { header: "2" }, { font: [] }],
-    [{ size: [] }],
-    ["bold", "italic", "underline", "strike", "blockquote"],
-    [
-      { list: "ordered" },
-      { list: "bullet" },
-      { indent: "-1" },
-      { indent: "+1" }
-    ],
-    ["link", "image", "video"],
-    ["clean"]
-  ],
-  clipboard: {
-    // toggle to add extra line breaks when pasting HTML:
-    matchVisual: false
+  toolbar: {
+    container: "#toolbar",
+    handlers: {
+      undo: undoChange,
+      redo: redoChange
+    }
   },
+  history: {
+    delay: 500,
+    maxStack: 100,
+    userOnly: true
+  }
 };
 
 // Formats objects for setting up the Quill editor
@@ -87,14 +75,18 @@ export const formats = [
   "bold",
   "italic",
   "underline",
+  "align",
   "strike",
+  "script",
   "blockquote",
+  "background",
   "list",
   "bullet",
   "indent",
   "link",
   "image",
-  "video"
+  "color",
+  "code-block"
 ];
 
 // Quill Toolbar component
@@ -157,9 +149,6 @@ export const QuillToolbar = () => (
       <button className="ql-clean" />
     </span>
     <span className="ql-formats">
-    <button className="ql-insertHeart">
-      <CustomHeart />
-    </button>
       <button className="ql-undo">
         <CustomUndo />
       </button>

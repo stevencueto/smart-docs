@@ -86,7 +86,7 @@ const editorRef = useCallback(container => {
 
   return (
     <div className="text-editor">
-      {/* <EditorToolbar /> */}
+      <EditorToolbar />
       <ReactQuill
       //disable the state so is uncontrolled
         ref={editorRef}
