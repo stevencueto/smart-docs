@@ -1,24 +1,22 @@
 import {useContext} from 'react'
 import {Link} from 'react-router-dom'
 import {EditDoc} from './EditDoc.jsx'
-import { Container } from '../StyledComponents/Container.styled.jsx'
-import ThemeContextPer from '../../context/DocsContext.jsx'
-
+import Icon from '@material-tailwind/react/Icon'
+import ButtonTail from '../tailwind/Button.jsx'
+import MinEditor from '../Docs/minTextEditor.jsx'
 function Dashboard(props) {
-  const {theme} = useContext(ThemeContextPer)
   return (
-    <Container bg={theme}>
-      <ul>
-      </ul>
+    <div>
         {props.docs.map((doc)=>{
-          return <li key={doc._id}>
-            {doc.title}
+          return <div key={doc._id}>
+            <MinEditor doc={doc}/>
             <Link to={`/documents/${doc.data}`}>{doc.title}</Link>
             <EditDoc key={doc.data} doc={doc} editDocAPICall={props.editDocAPICall}></EditDoc>
-            <button onClick={()=>props.deleteDocAPICall(doc)}>Delete?</button>
-          </li>
+            <Icon name="description" size="3xl" color="blue"/>
+            <ButtonTail onClick={()=>props.deleteDocAPICall(doc)}>Delete?</ButtonTail>
+          </div>
         })}
-    </Container>
+    </div>
   )
 }
 

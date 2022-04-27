@@ -1,6 +1,7 @@
 import './App.css';
 import React, { useState, useEffect, useMemo } from 'react'
-import "bootstrap/dist/css/bootstrap.min.css"
+import "@material-tailwind/react/tailwind.css";
+
 import Wrapper from './Components/Wrapper';
 import UserContext from './context/UserContex';
 function App() {

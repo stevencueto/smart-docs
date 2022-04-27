@@ -1,9 +1,10 @@
-import React, {useContext, useState} from 'react'
+import React, {useEffect, useState} from 'react'
 export const EditDoc = (props) => {
     const [editDoc, setEditDoc]= useState({
         ...props.doc,
     })
     const handleChange = (e)=>{
+      e.preventDefault()
       const {name, value} = e.target
       setEditDoc({
         ...editDoc,
@@ -13,22 +14,23 @@ export const EditDoc = (props) => {
     }
     const handleSumbit = (e)=>{
       e.preventDefault()
-      props.editDocAPICall(editDoc)
     }
+    useEffect(()=>{
+      if(editDoc.title.length > 3){
+        props.editDocAPICall(editDoc)
+      }
+    }, [editDoc])
   return (
     <div>
-      <form onSubmit={(e)=>handleSumbit(e)}>
-        <label htmlFor="title">Title</label>
         <input 
         type="text" 
         name="title"
         value={editDoc.title}
+        min="4"
+        required
         onChange={(e)=> handleChange(e)}
-        /><br/>  
-        <button>
-          submit
-        </button>
-      </form>
+        />
+        {editDoc.title.length <= 2&& "name must be >= 3 letters"}
     </div>
   )
 }

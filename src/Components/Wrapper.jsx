@@ -6,8 +6,7 @@ import Dashboard from './Dahsboard/Dashboard';
 import Register from './register/Register';
 import docsLink from './helpers/docsAPI';
 import { NewDoc } from './Dahsboard/NewDoc';
-import HeaderComp from './Header/Header';
-import ThemeContextPer from '../context/DocsContext';
+import Example from './Header/Header';
 // import SecondEditor from './Dahsboard/secondEditor';
 import Editor from './Docs/otherEditor';
 const Wrapper = () => {
@@ -116,9 +115,17 @@ const Wrapper = () => {
   useEffect(()=>{
     populateFunction()
   }, [])
+  const [activeMenu, setActiveMenu] = useState('menu')
+
+  const toggleMenu = (e) =>{
+    if(e.target.closest('.toggle-button')){
+      return setActiveMenu(prev => prev === 'menu' ? 'menu active' : 'menu')
+    }
+    return setActiveMenu('menu')
+  }
   return (
-    <ThemeContextPer.Provider value={provValue}>
-      <HeaderComp/>
+    <main onClick={toggleMenu}>
+      <Example activeMenu={activeMenu}/>
         <Routes>
           <Route path="/" exact element={<Dashboard deleteDocAPICall={deleteDocAPICall} editDocAPICall={editDocAPICall} docs={docs}/>} />
           <Route path="/new" exact element={<NewDoc newDocAPICall={newDocAPICall} newDoc={newDoc} handleChange={handleChange}/>} />
@@ -126,8 +133,7 @@ const Wrapper = () => {
           <Route path="/register" exact element={<Register/>} />
           <Route path="/documents/:id"  element={<Editor/>} />
         </Routes>
-   </ThemeContextPer.Provider>
-
+  </main>
   )
 }
 

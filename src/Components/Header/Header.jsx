@@ -1,18 +1,47 @@
-import { useContext } from "react";
-import ThemeContextPer from "../../context/DocsContext";
-import { Header, Nav, ProfilePicture  } from "../StyledComponents/StyledHeader";
-import UserContext from "../../context/UserContex";
+import React, { useState } from "react";
+import Navbar from "@material-tailwind/react/Navbar";
+import NavbarContainer from "@material-tailwind/react/NavbarContainer";
+import NavbarWrapper from "@material-tailwind/react/NavbarWrapper";
+import NavbarBrand from "@material-tailwind/react/NavbarBrand";
+import NavbarToggler from "@material-tailwind/react/NavbarToggler";
+import NavbarCollapse from "@material-tailwind/react/NavbarCollapse";
+import Nav from "@material-tailwind/react/Nav";
+import NavItem from "@material-tailwind/react/NavItem";
+import NavLink from "@material-tailwind/react/NavLink";
+import Icon from "@material-tailwind/react/Icon";
 
-const HeaderComp = ()=> {
-    const {user} = useContext(UserContext)
-    const {theme} = useContext(ThemeContextPer)
+export default function Header() {
+  const [openNavbar, setOpenNavbar] = useState(false);
+
   return (
-    <Header>
-        <Nav>{user.username}</Nav>
-        <Nav>Welcome</Nav>
-        <ProfilePicture src="https://media.vogue.fr/photos/5c9b4077488cdc4843df8c05/2:3/w_2240,c_limit/Capture%20d%E2%80%99e%CC%81cran%202019-03-27%20a%CC%80%2010.20.41.png"/>
-        </Header>
-  )
-}
+    <Navbar color="lightBlue" navbar>
+        <NavbarContainer>
+            <NavbarWrapper>
+                <NavbarBrand>Navbar</NavbarBrand>
+                <NavbarToggler
+                    color="white"
+                    onClick={() => setOpenNavbar(!openNavbar)}
+                    ripple="light"
+                />
+            </NavbarWrapper>
 
-export default HeaderComp
+            <NavbarCollapse open={openNavbar}>
+                <Nav>
+                    <NavItem active="light" ripple="light">
+                        <Icon name="language" size="xl" />
+                    </NavItem>
+                    <NavLink href="#navbar" ripple="light">
+                        <Icon name="account_circle" size="xl" />
+                    </NavLink>
+                    <NavLink href="/" ripple="light">
+                        <Icon name="description" size="xl" />
+                    </NavLink>
+                    <NavItem ripple="light">
+                        <Icon name="settings" size="xl" />
+                    </NavItem>
+                </Nav>
+            </NavbarCollapse>
+        </NavbarContainer>
+    </Navbar>
+  );
+}
