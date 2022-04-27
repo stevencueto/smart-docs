@@ -10,6 +10,9 @@ function App() {
     if(locate) return setUser(JSON.parse(locate))
   }
   const provValue = useMemo(()=>({user, setUser, findUser}), [user, setUser])
+  useEffect(()=>{
+    findUser()
+  }, [])
   return (
     <div className="App">
       <UserContext.Provider value={provValue}>

@@ -6,8 +6,10 @@ import Dashboard from './Dahsboard/Dashboard';
 import Register from './register/Register';
 import docsLink from './helpers/docsAPI';
 import { NewDoc } from './Dahsboard/NewDoc';
+import HeaderComp from './Header/Header';
 import ThemeContextPer from '../context/DocsContext';
-import SecondEditor from './Dahsboard/secondEditor';
+// import SecondEditor from './Dahsboard/secondEditor';
+import Editor from './Docs/otherEditor';
 const Wrapper = () => {
   let navigate = useNavigate();
   const [docs, setDocs]= React.useState([])
@@ -116,12 +118,13 @@ const Wrapper = () => {
   }, [])
   return (
     <ThemeContextPer.Provider value={provValue}>
+      <HeaderComp/>
         <Routes>
           <Route path="/" exact element={<Dashboard deleteDocAPICall={deleteDocAPICall} editDocAPICall={editDocAPICall} docs={docs}/>} />
           <Route path="/new" exact element={<NewDoc newDocAPICall={newDocAPICall} newDoc={newDoc} handleChange={handleChange}/>} />
-          {/* <Route path="/edit" exact element={<SecondEditor/> } /> */}
+          <Route path="/edit" exact element={<Editor/> } />
           <Route path="/register" exact element={<Register/>} />
-          <Route path="/documents/:id"  element={<SecondEditor/>} />
+          <Route path="/documents/:id"  element={<Editor/>} />
         </Routes>
    </ThemeContextPer.Provider>
 

@@ -7,7 +7,6 @@ import { useParams } from "react-router-dom"
 function SecondEditor() {
     const id = useParams()
     const [socket, setSocket] = useState()
-    const [findingDoc, setFindingDoc] = useState(false)
     const [editorState, setEditorState] = useState('')
     const editorRef = useRef(null)
     const getVal = ()=>{
@@ -38,13 +37,29 @@ function SecondEditor() {
       }, [socket])
 
 
+
+      useEffect(() => {
+        if (!socket|| !editor) return
+    
+        const handler = (delta, source) => {
+          if (source !== 'user') return
+          socket.emit('send-changes', delta)
+        }
+        editor.on('text-change', handler)
+    
+        return () => {
+          editor.off('text-change', handler)
+        }
+      }, [socket, editor])
+
       useEffect(()=>{
         if (!socket || !editorState) return
             socket.on('receive-changes', change =>{
                 setEditorState(change)
                 console.log('te')
             })
-            console.log('te')
+
+            console.log('so')
 
     },[editorState, socket])
 
@@ -58,6 +73,9 @@ function SecondEditor() {
           clearInterval( socketC )
         }
       }, [socket, editorState])
+
+    
+
   return (
     <div>
         <Editor

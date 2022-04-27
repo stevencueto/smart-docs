@@ -1,11 +1,7 @@
-.ql-font .ql-picker-options span[data-value="Ubuntu"]::before {
-    font-family: "Ubuntu";
-  }
-  
-  .ql-font .ql-picker-options span[data-value="Raleway"]::before {
-    font-family: "Raleway";
-  }
-  
-  .ql-font .ql-picker-options span[data-value="Roboto"]::before {
-    font-family: "Roboto";
-  }
+.text-editor {
+  width: 1086px;
+  margin: 0 auto;
+}
+.ql-editor {
+  min-height: 100px;
+}
