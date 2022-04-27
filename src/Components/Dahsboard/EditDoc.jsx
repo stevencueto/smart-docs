@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react'
+
 export const EditDoc = (props) => {
     const [editDoc, setEditDoc]= useState({
         ...props.doc,
