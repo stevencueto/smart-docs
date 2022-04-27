@@ -1,7 +1,7 @@
 import docsLink from "./docsAPI";
+let doc;
 
 const getDoc = async (id)=>{
-    let doc;
     try {
         const req = await fetch(`${docsLink}doc/data/${id}`, {
             headers: {
@@ -12,6 +12,7 @@ const getDoc = async (id)=>{
         if(res.success){
             doc = res.data
         }
+        console.log(res)
     } catch (error) {
         console.log(error)
     }
@@ -20,17 +21,18 @@ const getDoc = async (id)=>{
 
 
 export const openDate = (id) =>{
-    const doc = getDoc(id)
-    console.log(doc)
+    getDoc(id)
+    console.log(doc, 'id')
     if(doc === null) return
-    const now = new Date();
+    let now = new Date();
     const year = now.getFullYear();
     let month = now.getMonth() + 1; // Months start at 0!
     let day = now.getDate();
 
-    let rn = new Date(Date.UTC(year, month, day))
+    now = new Date(Date.UTC(year, month, day))
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
-    today = rn.toLocaleDateString('en-US', options)
+    const today = now.toLocaleDateString('en-US', options)
+    console.log(today)
     if(today === doc?.openDate)return
 }
 
