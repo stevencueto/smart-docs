@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "@material-tailwind/react/Button";
 
-export default function ButtonTail() {
+export default function ButtonTail({text}) {
     return (
         <Button
             color="lightBlue"
@@ -11,8 +11,6 @@ export default function ButtonTail() {
             block={false}
             iconOnly={false}
             ripple="light"
-        >
-            Button
-        </Button>
+        >{text}</Button>
     )
 }

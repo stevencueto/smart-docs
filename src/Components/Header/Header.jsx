@@ -17,7 +17,7 @@ export default function Header() {
     <Navbar color="lightBlue" navbar>
         <NavbarContainer>
             <NavbarWrapper>
-                <NavbarBrand>Navbar</NavbarBrand>
+                <NavbarBrand>SmartDocxs</NavbarBrand>
                 <NavbarToggler
                     color="white"
                     onClick={() => setOpenNavbar(!openNavbar)}

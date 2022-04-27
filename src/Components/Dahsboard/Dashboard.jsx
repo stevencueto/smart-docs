@@ -4,16 +4,18 @@ import {EditDoc} from './EditDoc.jsx'
 import Icon from '@material-tailwind/react/Icon'
 import ButtonTail from '../tailwind/Button.jsx'
 import MinEditor from '../Docs/minTextEditor.jsx'
+import DocsContainer from './DocsContainer.jsx'
 function Dashboard(props) {
+  const onClikc =(e)=>{
+    console.log(e)
+  }
   return (
-    <div>
+    <div className='w-1'>
         {props.docs.map((doc)=>{
           return <div key={doc._id}>
-            <MinEditor doc={doc}/>
-            <Link to={`/documents/${doc.data}`}>{doc.title}</Link>
+            <Link to={`/documents/${doc.data}`}><DocsContainer doc={doc}/></Link>
             <EditDoc key={doc.data} doc={doc} editDocAPICall={props.editDocAPICall}></EditDoc>
-            <Icon name="description" size="3xl" color="blue"/>
-            <ButtonTail onClick={()=>props.deleteDocAPICall(doc)}>Delete?</ButtonTail>
+            <ButtonTail text={"delete"} onClick={onClikc}/>
           </div>
         })}
     </div>

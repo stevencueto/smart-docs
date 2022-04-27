@@ -99,6 +99,7 @@ const Wrapper = () => {
         const newDocs = docs.filter(one => one._id !== doc._id)
         setDocs(newDocs)
       }
+      console.log(res)
     } catch (error) {
       console.log(error)
     }

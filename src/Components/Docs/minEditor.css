@@ -1,0 +1,27 @@
+.min-editor{
+    width: 210px;
+    height: 265px;
+}
+
+.min-editor .ql-container .ql-editor{
+    background-color: #fcfcfcf6;
+
+}
+
+.doc-description{
+    height: 75px;
+    padding: 4px;
+    border-top: solid .5px gray;
+}
+.doc-description p {
+    text-overflow: ellipsis;
+    overflow: hidden; 
+    width: 200px;
+    text-align: center; 
+    white-space: nowrap;
+}
+.doc-container{
+    width: 211px;
+    height: 340px;
+    border: solid .5px gray;
+  }
