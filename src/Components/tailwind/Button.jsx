@@ -1,9 +1,10 @@
 import React from "react";
 import Button from "@material-tailwind/react/Button";
 
-export default function ButtonTail({text}) {
+export default function ButtonTail(props) {
     return (
-        <Button
+        <Button 
+            onClick={()=>props.click(props.doc)}
             color="lightBlue"
             buttonType="filled"
             size="regular"
@@ -11,6 +12,6 @@ export default function ButtonTail({text}) {
             block={false}
             iconOnly={false}
             ripple="light"
-        >{text}</Button>
+        >{props.text}</Button>
     )
 }

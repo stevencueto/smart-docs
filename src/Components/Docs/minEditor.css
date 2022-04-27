@@ -10,18 +10,35 @@
 
 .doc-description{
     height: 75px;
-    padding: 4px;
+    padding: 10px;
     border-top: solid .5px gray;
 }
-.doc-description p {
+.doc-title{
     text-overflow: ellipsis;
     overflow: hidden; 
     width: 200px;
-    text-align: center; 
     white-space: nowrap;
+    font-weight: 400;
+    font-size: 14px;
 }
 .doc-container{
     width: 211px;
     height: 340px;
     border: solid .5px gray;
   }
+
+
+.open-date{
+    color: #777;
+    font-size: .9em;
+    font-weight: 200px;
+}
+.has-date{
+    position:relative;
+    top:-4px;
+    font-weight: 200px;
+
+}
+.icon-inline{
+    margin-bottom: -2px;
+}

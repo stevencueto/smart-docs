@@ -25,20 +25,7 @@ export default function MinEditor({doc}) {
 
     socket.emit('find-document', doc.data)
   }, [socket, editor, doc.data])
-
   
-
-  useEffect(() => {
-    if (socket == null || editor == null) return
-
-    const socketC = setInterval(() => {
-      socket.emit('save-document', editor.getContents())
-    }, 1000)
-
-    return () => {
-      clearInterval( socketC )
-    }
-  }, [socket, editor])
 
   useEffect(() => {
     if (!socket|| !editor) return
