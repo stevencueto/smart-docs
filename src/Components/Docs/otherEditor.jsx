@@ -7,7 +7,9 @@ import { io } from "socket.io-client"
 import { useParams } from "react-router-dom"
 import socketLink from "../helpers/socketDoc";
 
-export const Editor = () => {
+
+
+export const Editor = (props) => {
     const {id} = useParams()
     const [socket, setSocket] = useState()
     const [editor, setEditor] = useState()
@@ -17,7 +19,7 @@ export const Editor = () => {
     useEffect(() => {
       const socketConection = io(socketLink, { transports : ['websocket'] })
       setSocket(socketConection)
-  
+      props.handleShow()
       return () => {
         socketConection.disconnect()
       }

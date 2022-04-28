@@ -6,10 +6,16 @@ import Dashboard from './Dahsboard/Dashboard';
 import Register from './register/Register';
 import docsLink from './helpers/docsAPI';
 import { NewDoc } from './Dahsboard/NewDoc';
-import Example from './Header/Header';
+import Header from './Header/Header';
+import Login from './Login';
+import Profile from './profile/Profile';
 // import SecondEditor from './Dahsboard/secondEditor';
 import Editor from './Docs/otherEditor';
 const Wrapper = () => {
+  const [show, setShow] = useState(true)
+  const handleShow = (newShow=false) =>{
+    setShow(newShow)
+  }
   let navigate = useNavigate();
   const [docs, setDocs]= React.useState([])
   const [newDoc, setNewDoc]= React.useState({
@@ -116,23 +122,18 @@ const Wrapper = () => {
   useEffect(()=>{
     populateFunction()
   }, [])
-  const [activeMenu, setActiveMenu] = useState('menu')
 
-  const toggleMenu = (e) =>{
-    if(e.target.closest('.toggle-button')){
-      return setActiveMenu(prev => prev === 'menu' ? 'menu active' : 'menu')
-    }
-    return setActiveMenu('menu')
-  }
   return (
-    <main onClick={toggleMenu}>
-      <Example activeMenu={activeMenu}/>
+    <main>
+      {show && <Header/>}
         <Routes>
-          <Route path="/" exact element={<Dashboard deleteDocAPICall={deleteDocAPICall} editDocAPICall={editDocAPICall} docs={docs}/>} />
+          <Route path="/" exact element={<Dashboard handleShow={handleShow} deleteDocAPICall={deleteDocAPICall} editDocAPICall={editDocAPICall} docs={docs}/>} />
           <Route path="/new" exact element={<NewDoc newDocAPICall={newDocAPICall} newDoc={newDoc} handleChange={handleChange}/>} />
           <Route path="/edit" exact element={<Editor/> } />
+          <Route path="/profile" exact element={<Profile/> } />
+          <Route path="/login" exact element={<Login/> } />
           <Route path="/register" exact element={<Register/>} />
-          <Route path="/documents/:id"  element={<Editor/>} />
+          <Route path="/documents/:id"  element={<Editor handleShow={handleShow}/>} />
         </Routes>
   </main>
   )
