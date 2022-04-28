@@ -2,8 +2,7 @@ import React from "react";
 import Dropdown from "@material-tailwind/react/Dropdown"
 import DropdownItem from "@material-tailwind/react/DropdownItem"
 import DropdownLink from "@material-tailwind/react/DropdownLink"
-
-export default function DropdownComp() {
+export default function DropdownComp(props) {
     return (
         <Dropdown
             color="lightBlue"
@@ -15,7 +14,7 @@ export default function DropdownComp() {
             block={false}
             ripple="light"
         >
-            <DropdownItem color="lightBlue" ripple="light">
+            <DropdownItem color="lightBlue" ripple="light" onClick={(e)=> props.handleModal()}>
                 Rename
             </DropdownItem>
             <DropdownLink

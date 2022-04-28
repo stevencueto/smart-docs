@@ -4,9 +4,18 @@ import Icon from '@material-tailwind/react/Icon'
 import MinEditor from '../Docs/minTextEditor.jsx'
 import { openDate } from '../helpers/openDate.jsx'
 import Dropdown from './DocDropDown.jsx'
+import { EditDoc } from './EditDoc.jsx'
+import ModalEdit from './Modal.jsx'
+
 
 
 const DocsContainer =(props)=> {
+    const [showModal, setShowModal] = useState(false);
+    const handleModal = ()=>{
+        setShowModal(!showModal)
+        console.log('modal')
+    }
+
     const [date, setDate] = useState('');
     useEffect(()=>{
         if(!props.doc) return
@@ -25,8 +34,9 @@ const DocsContainer =(props)=> {
             </div>
             </Link>
         <div className=' absolute top-0 right-0 z-10'>
-            <Dropdown></Dropdown>
+            <Dropdown handleModal={handleModal} doc={props.doc}></Dropdown>
         </div>
+        <ModalEdit showModal={showModal} setShowModal={setShowModal} handleModal={handleModal} doc={props.doc}/>
     </div>
   )
 }

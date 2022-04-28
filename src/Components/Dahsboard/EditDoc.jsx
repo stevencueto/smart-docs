@@ -1,5 +1,7 @@
 import React, {useEffect, useState, useContext} from 'react'
 import DocContext from '../../context/DocContex'
+import InputIcon from "@material-tailwind/react/InputIcon";
+
 
 export const EditDoc = (props) => {
   const {editDocAPICall} = useContext(DocContext)
@@ -21,9 +23,15 @@ export const EditDoc = (props) => {
     }, [editDoc])
   return (
     <div>
-        <input 
-        type="text" 
+        <InputIcon 
+        type="text"
+        color="lightBlue"
+        size="regular"
+        outline={true}
+        iconFamily="material-icons"
+        iconName="description" 
         name="title"
+        placeholder="..."
         value={editDoc.title}
         min="4"
         required
