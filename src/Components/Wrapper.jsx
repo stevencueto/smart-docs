@@ -1,5 +1,5 @@
 
-import React, { useEffect, useMemo, useState} from 'react';
+import React, { useEffect, useMemo, useState, useContext} from 'react';
 import {Route, Routes , useNavigate} from 'react-router-dom'
 import DocsEditor  from './Docs/DocsEditor1'
 import Dashboard from './Dahsboard/Dashboard';
@@ -9,6 +9,7 @@ import { NewDoc } from './Dahsboard/NewDoc';
 import Header from './Header/Header';
 import Login from './Login';
 import Profile from './profile/Profile';
+import DocContext from '../context/DocContex';
 // import SecondEditor from './Dahsboard/secondEditor';
 import Editor from './Docs/otherEditor';
 const Wrapper = () => {
@@ -47,7 +48,6 @@ const Wrapper = () => {
     }
   }
   const newDocAPICall = async(doc)=>{
-    console.log(doc)
     try {
       const req = await fetch(`${docsLink}doc`,  {
         method: 'POST',
@@ -110,21 +110,15 @@ const Wrapper = () => {
       console.log(error)
     }
   }
-  const [theme, setTheme] = useState('Black')
-  const toggleTheme =()=>{
-    if(theme === "blakc"){
-      setTheme('white')
-    }else{
-      setTheme('black')
-    }
-  }
-  const provValue = useMemo(()=>({theme, toggleTheme}), [theme, setTheme, toggleTheme])
+
+  const provValue = useMemo(()=>({newDoc,newDocAPICall, editDocAPICall, deleteDocAPICall, docs, handleChange}), [newDoc,handleChange,newDocAPICall, editDocAPICall, deleteDocAPICall, docs])
   useEffect(()=>{
     populateFunction()
   }, [])
 
   return (
     <main>
+      <DocContext.Provider value={provValue}>
       {show && <Header/>}
         <Routes>
           <Route path="/" exact element={<Dashboard handleShow={handleShow} deleteDocAPICall={deleteDocAPICall} editDocAPICall={editDocAPICall} docs={docs}/>} />
@@ -135,6 +129,7 @@ const Wrapper = () => {
           <Route path="/register" exact element={<Register/>} />
           <Route path="/documents/:id"  element={<Editor handleShow={handleShow}/>} />
         </Routes>
+        </DocContext.Provider>
   </main>
   )
 }

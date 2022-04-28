@@ -1,6 +1,8 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState, useContext} from 'react'
+import DocContext from '../../context/DocContex'
 
 export const EditDoc = (props) => {
+  const {editDocAPICall} = useContext(DocContext)
     const [editDoc, setEditDoc]= useState({
         ...props.doc,
     })
@@ -11,14 +13,10 @@ export const EditDoc = (props) => {
         ...editDoc,
         [name]: value
       })
-      console.log(editDoc)
-    }
-    const handleSumbit = (e)=>{
-      e.preventDefault()
     }
     useEffect(()=>{
       if(editDoc.title.length > 3){
-        props.editDocAPICall(editDoc)
+        editDocAPICall(editDoc)
       }
     }, [editDoc])
   return (
@@ -31,7 +29,7 @@ export const EditDoc = (props) => {
         required
         onChange={(e)=> handleChange(e)}
         />
-        {editDoc.title.length <= 2&& "name must be >= 3 letters"}
+        {editDoc.title.length <= 2 && "name must be >= 3 characters"}
     </div>
   )
 }
