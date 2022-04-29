@@ -8,8 +8,8 @@ export default function MinEditor({doc}) {
   const [editor, setEditor] = useState()
   const token = localStorage.getItem('docs-token')
   useEffect(() => {
-    const socketConection = io(socketLink, { transports : ['websocket'] , query: {
-      token: {token}
+    const socketConection = io(socketLink, { transports : ['websocket'] ,auth: {
+      token: token
     }})
     setSocket(socketConection)
 

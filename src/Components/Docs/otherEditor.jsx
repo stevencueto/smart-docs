@@ -8,8 +8,9 @@ import { useParams } from "react-router-dom"
 import socketLink from "../helpers/socketDoc";
 import ModalPermission from "./requestPermission";
 
-
 export const Editor = (props) => {
+  
+
     const [showModal, setShowModal] = useState(false);
     const handleModal = ()=>{
         setShowModal(!showModal)
@@ -73,13 +74,13 @@ export const Editor = (props) => {
   
       const setChange = delta => {
         editor.setText(delta)
-        socket.disconnect()
+        props.handleShow(true)
         handleModal() 
       }
       socket.on('close-editor', setChange)
   
       return () => {
-        socket.off('close-editor', setChange)
+        socket.disconnect()
       }
     }, [socket, editor])
 const editorRef = useCallback(container => {

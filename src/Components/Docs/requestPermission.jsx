@@ -5,7 +5,9 @@ import ModalBody from "@material-tailwind/react/ModalBody";
 import ModalFooter from "@material-tailwind/react/ModalFooter";
 import Button from "@material-tailwind/react/Button";
 import UserContext from '../../context/UserContex'
+import { useNavigate } from "react-router-dom";
 export default function ModalPermission(props) {
+    const navigate = useNavigate()
     const {user} =useContext(UserContext)
     return (
         <>
@@ -22,10 +24,10 @@ export default function ModalPermission(props) {
                         color="red"
                         buttonType="link"
                         href="/"
-                        onClick={(e) => props.handleModal(false)}
+                        onClick={(e) => navigate("/", { replace: true })}
                         ripple="dark"
                     >
-                        Close
+                        Go Back
                     </Button>
                 </ModalFooter>
             </Modal>
