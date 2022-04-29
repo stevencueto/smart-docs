@@ -15,12 +15,13 @@ export default function ModalPermission(props) {
                     {user?.username || "User Not Allowed"}
                 </ModalHeader>
                 <ModalBody>
-                    You do not have persmission for this documents, please request it!
+                    You do not have persmission for this document, please request it!
                 </ModalBody>
                 <ModalFooter>
                     <Button 
                         color="red"
                         buttonType="link"
+                        href="/"
                         onClick={(e) => props.handleModal(false)}
                         ripple="dark"
                     >

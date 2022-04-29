@@ -107,7 +107,7 @@ const editorRef = useCallback(container => {
 
   return (
     <div className="text-editor">
-      <ModalPermission showModal={showModal} setShowModal={setShowModal} handleModalDelete={handleModal} doc={id}/>
+      <ModalPermission showModal={showModal} setShowModal={setShowModal} handleModal={handleModal} doc={id}/>
 
       <EditorToolbar />
       <ReactQuill

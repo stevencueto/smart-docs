@@ -41,7 +41,7 @@ const DocsContainer =(props)=> {
         <div className=' absolute top-0 right-0 z-10'>
             <Dropdown handleModal={handleModal} handleModalDelete={handleModalDelete} doc={props.doc}></Dropdown>
         </div>
-        <ModalEdit showModal={showModal} setShowModal={setShowModal} handleModalDelete={handleModal} doc={props.doc}/>
+        <ModalEdit showModal={showModal} setShowModal={setShowModal} handleModal={handleModal} doc={props.doc}/>
         <ModalDelete showModalDelete={showModalDelete} setShowModalDelete={setShowModalDelete} handleModalDelete={handleModalDelete} doc={props.doc}/>
 
     </div>
