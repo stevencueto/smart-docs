@@ -17,14 +17,14 @@ export default function DropdownComp(props) {
             <DropdownItem color="lightBlue" ripple="light" onClick={(e)=> props.handleModal()}>
                 Rename
             </DropdownItem>
-            <DropdownLink
+            <DropdownItem
                 href="#"
                 color="lightBlue"
                 ripple="light"
-                onClick={(e) => e.preventDefault()}
+                onClick={()=>{props.handleModalDelete(); console.log('modal')}}
             >
                 Remove
-            </DropdownLink>
+            </DropdownItem>
             <DropdownItem color="lightBlue" ripple="light">
                 Open in a new Tab
             </DropdownItem>

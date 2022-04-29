@@ -13,11 +13,13 @@ export const Editor = (props) => {
     const {id} = useParams()
     const [socket, setSocket] = useState()
     const [editor, setEditor] = useState()
-
-
+    const token = localStorage.getItem('docs-token')
   
     useEffect(() => {
-      const socketConection = io(socketLink, { transports : ['websocket'] })
+      console.log(token)
+      const socketConection = io(socketLink, { transports : ['websocket'] , query: {
+        token: {token}
+      }})
       setSocket(socketConection)
       props.handleShow()
       return () => {

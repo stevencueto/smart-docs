@@ -30,7 +30,7 @@ export default function Header() {
                     <NavItem active="light" ripple="light">
                         <Icon name="language" size="xl" />
                     </NavItem>
-                    <NavLink href="#navbar" ripple="light">
+                    <NavLink href="/profile" ripple="light">
                         <Icon name="account_circle" size="xl" />
                     </NavLink>
                     <NavLink href="/" ripple="light">

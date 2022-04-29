@@ -6,9 +6,11 @@ import './minEditor.css'
 export default function MinEditor({doc}) {
   const [socket, setSocket] = useState()
   const [editor, setEditor] = useState()
-
+  const token = localStorage.getItem('docs-token')
   useEffect(() => {
-    const socketConection = io(socketLink, { transports : ['websocket'] })
+    const socketConection = io(socketLink, { transports : ['websocket'] , query: {
+      token: {token}
+    }})
     setSocket(socketConection)
 
     return () => {

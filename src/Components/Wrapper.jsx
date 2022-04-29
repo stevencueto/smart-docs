@@ -41,7 +41,7 @@ const Wrapper = () => {
       })
       const res = await req.json()
       if(res.success){
-        setDocs(res.data)
+        setDocs(res.data.reverse())
       }
     } catch (error) {
       console.log(error)
@@ -59,7 +59,7 @@ const Wrapper = () => {
       })
       const res = await req.json()
       if(res.success === true){
-        setDocs([...docs, res.data])
+        setDocs([res.data,...docs])
         setNewDoc({
           title: "",
           type: "docs"
