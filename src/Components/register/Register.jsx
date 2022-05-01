@@ -22,6 +22,7 @@ const Register = ()=> {
 
 	const [newUser, setNewUser] = useState({
         username: "",
+		name: "",
         email: "",
         password: "",
 		confirmPassword: "",
@@ -89,7 +90,7 @@ const Register = ()=> {
 			console.log(fetchedUser)
 			if (fetchedUser.success === true) {
 				localStorage.setItem('docs-token', fetchedUser.data.token);
-				window.localStorage.setItem('docs-user', JSON.stringify(fetchedUser.data.user));
+				localStorage.setItem('docs-user', JSON.stringify(fetchedUser.data.user));
 				setUser(fetchedUser.user)
 				window.location.reload(false);
 				navigate("/all", { replace: true })
@@ -168,6 +169,18 @@ style={{ minHeight: "100vh" }}
 		  autoComplete="off"/>
 	  </Form.Group>
 
+	  <Form.Group className="mb-3">
+		  <Form.Label>Name</Form.Label>
+		  <Form.Control type="name"
+		  value={newUser.name}
+		  onChange={updateNewUser}
+		  placeholder="Name"
+		  name="name"
+		  ref={emailRef}
+		  required
+		  autoComplete="off"/>
+	  </Form.Group>
+
 	  <Form.Group className="mb-3" controlId="formBasicPassword">
 		  <Form.Label>Password</Form.Label>
 		  <Form.Control 
@@ -213,7 +226,7 @@ style={{ minHeight: "100vh" }}
 				</Form.Text>
 				}
 				
-	  <Button variant="primary" type="submit" className='btn-other' disabled={button}>
+	  <Button variant="primary" type="submit" className='btn-other' >
 		  Submit
 	  </Button>
   </Form>

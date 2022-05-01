@@ -6,7 +6,7 @@ import ModalNew from './ModalNew.jsx';
 function Dashboard(props) {
   useEffect(()=>{props.handleShow(true)},[])
   return (
-    <section>
+    <section style={{ minHeight: '80vh'}}>
       <h3 className='text-lg text-center my-4'>Your Documents </h3>
       <div className='my-4 mx-4'>
         <ModalNew/>

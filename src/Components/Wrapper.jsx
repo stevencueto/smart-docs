@@ -10,6 +10,8 @@ import Header from './Header/Header';
 import Login from './Login';
 import Profile from './profile/Profile';
 import DocContext from '../context/DocContex';
+import SimpleFooter from './SimpleFooter';
+import Settings from './settings/Settings';
 // import SecondEditor from './Dahsboard/secondEditor';
 import Editor from './Docs/otherEditor';
 const Wrapper = () => {
@@ -124,11 +126,13 @@ const Wrapper = () => {
           <Route path="/" exact element={<Dashboard handleShow={handleShow} deleteDocAPICall={deleteDocAPICall} editDocAPICall={editDocAPICall} docs={docs}/>} />
           <Route path="/new" exact element={<NewDoc newDocAPICall={newDocAPICall} newDoc={newDoc} handleChange={handleChange}/>} />
           <Route path="/edit" exact element={<Editor/> } />
-          <Route path="/profile" exact element={<Profile/> } />
+          <Route path="/profile" exact element={<Profile docs={docs}/> } />
           <Route path="/login" exact element={<Login/> } />
+          <Route path="/settings" exact element={<Settings/> } />
           <Route path="/register" exact element={<Register/>} />
           <Route path="/documents/:id"  element={<Editor handleShow={handleShow}/>} />
         </Routes>
+        <SimpleFooter/>
         </DocContext.Provider>
   </main>
   )
