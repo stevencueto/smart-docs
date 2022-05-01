@@ -12,6 +12,8 @@ import Profile from './profile/Profile';
 import DocContext from '../context/DocContex';
 import SimpleFooter from './SimpleFooter';
 import Settings from './settings/Settings';
+import FriendsContext from '../context/FriendContex';
+import { FriendsProvider } from '../context/FriendContex';
 // import SecondEditor from './Dahsboard/secondEditor';
 import Editor from './Docs/otherEditor';
 const Wrapper = () => {
@@ -112,10 +114,13 @@ const Wrapper = () => {
       console.log(error)
     }
   }
+  const {populateFriends, addFriend} = useContext(FriendsContext)
 
   const provValue = useMemo(()=>({newDoc,newDocAPICall, editDocAPICall, deleteDocAPICall, docs, handleChange}), [newDoc,handleChange,newDocAPICall, editDocAPICall, deleteDocAPICall, docs])
   useEffect(()=>{
+    addFriend("626ea5c89ba30da39354276c")
     populateFunction()
+    populateFriends()
   }, [])
 
   return (

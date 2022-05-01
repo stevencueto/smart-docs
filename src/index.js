@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App'
+import { FriendsProvider } from './context/FriendContex';
 import './index.css'
 import './input.css'
 import { BrowserRouter, } from 'react-router-dom'
@@ -9,7 +10,9 @@ import { BrowserRouter, } from 'react-router-dom'
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
+    <FriendsProvider>
         <App />
+    </FriendsProvider>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')

@@ -51,7 +51,7 @@ export default function Content({docs}) {
                                     </div>
                                     <div className="mr-4 p-3 text-center">
                                         <span className="text-xl font-bold block uppercase tracking-wide text-gray-900">
-                                            {docs.lentgh || 0}
+                                            {docs.length || 0}
                                         </span>
                                         <span className="text-sm text-gray-700">
                                             Documents

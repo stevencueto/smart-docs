@@ -29,9 +29,10 @@ export default function ModalNew() {
 
             <Modal size="sm" active={showModal} toggler={() => setShowModal(false)}>
                 <ModalHeader toggler={() => setShowModal(false)}>
-                    <NewDoc setShowModal={setShowModal}/>
+                    New Document
                 </ModalHeader>
                 <ModalBody>
+                    <NewDoc setShowModal={setShowModal}/>
                 </ModalBody>
                 <ModalFooter>
                     <Button 
