@@ -1,6 +1,9 @@
 {
   "name": "client",
   "version": "0.1.0",
+  "engines": {
+    "node": "17.x"
+  },
   "private": true,
   "dependencies": {
     "@headlessui/react": "^1.6.0",
