@@ -9,7 +9,7 @@ import Nav from "@material-tailwind/react/Nav";
 import NavItem from "@material-tailwind/react/NavItem";
 import NavLink from "@material-tailwind/react/NavLink";
 import Icon from "@material-tailwind/react/Icon";
-
+import img from '../img/smartdox-logo-main.png'
 export default function Header() {
   const [openNavbar, setOpenNavbar] = useState(false);
 
@@ -17,7 +17,9 @@ export default function Header() {
     <Navbar color="lightBlue" navbar>
         <NavbarContainer>
             <NavbarWrapper>
-                <NavbarBrand>SmartDocxs</NavbarBrand>
+                <NavbarBrand>
+                    <img  className="h-8" src={img} alt="" />
+                </NavbarBrand>
                 <NavbarToggler
                     color="white"
                     onClick={() => setOpenNavbar(!openNavbar)}

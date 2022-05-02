@@ -7,6 +7,8 @@ import { io } from "socket.io-client"
 import { useParams } from "react-router-dom"
 import socketLink from "../helpers/socketDoc";
 import ModalPermission from "./requestPermission";
+import HeaderEditor from "./DocsHeader";
+import './docs-css.css'
 
 export const Editor = (props) => {
   
@@ -108,7 +110,8 @@ const editorRef = useCallback(container => {
 
   return (
     <div className="text-editor">
-      <ModalPermission showModal={showModal} setShowModal={setShowModal} handleModal={handleModal} doc={id}/>
+      {/* <HeaderEditor/> */}
+      {showModal && <ModalPermission showModal={showModal} setShowModal={setShowModal} handleModal={handleModal} doc={id}/>}
 
       <EditorToolbar />
       <ReactQuill
