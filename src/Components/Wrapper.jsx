@@ -1,7 +1,6 @@
 
 import React, { useEffect, useMemo, useState, useContext} from 'react';
 import {Route, Routes , useNavigate} from 'react-router-dom'
-import DocsEditor  from './Docs/DocsEditor1'
 import Dashboard from './Dahsboard/Dashboard';
 import Register from './register/Register';
 import docsLink from './helpers/docsAPI';
@@ -13,7 +12,6 @@ import DocContext from '../context/DocContex';
 import SimpleFooter from './SimpleFooter';
 import Settings from './settings/Settings';
 import FriendsContext from '../context/FriendContex';
-import { FriendsProvider } from '../context/FriendContex';
 // import SecondEditor from './Dahsboard/secondEditor';
 import Editor from './Docs/otherEditor';
 const Wrapper = () => {
@@ -153,7 +151,6 @@ const Wrapper = () => {
         <Routes>
           <Route path="/" exact element={<Dashboard handleShow={handleShow} deleteDocAPICall={deleteDocAPICall} editDocAPICall={editDocAPICall} docs={docs}/>} />
           <Route path="/new" exact element={<NewDoc newDocAPICall={newDocAPICall} newDoc={newDoc} handleChange={handleChange}/>} />
-          <Route path="/edit" exact element={<Editor/> } />
           <Route path="/profile" exact element={<Profile docs={docs}/> } />
           <Route path="/login" exact element={<Login/> } />
           <Route path="/settings" exact element={<Settings/> } />
