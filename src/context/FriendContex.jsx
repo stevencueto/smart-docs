@@ -20,7 +20,6 @@ export const FriendsProvider = ({ children }) => {
             const res = await req.json()
             if(res.success){
                 setFriendId(res.data._id)
-                console.log(res.data._id)
                 setFriends(res.data.friends)
             }
         } catch (error) {
@@ -31,7 +30,7 @@ export const FriendsProvider = ({ children }) => {
     const addFriend = async(id)=>{
         const friend ={friend: id}
         try {
-            const req = await fetch(`${friendsLink}friend/626ea57c4593fc853d3ed14f`, {
+            const req = await fetch(`${friendsLink}friend/${friendId}`, {
                 method: 'PUT',
                 body: JSON.stringify(friend),
                 headers: {
@@ -43,7 +42,7 @@ export const FriendsProvider = ({ children }) => {
                 setFriends(res.data)
                 console.log(res.data)
             }
-            console.log(res)
+            console.log(res.data)
         } catch (error) {
             
         }

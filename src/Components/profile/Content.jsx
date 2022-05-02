@@ -5,9 +5,11 @@ import Icon from '@material-tailwind/react/Icon';
 import LeadText from '@material-tailwind/react/LeadText';
 import { useContext } from 'react';
 import UserContext from '../../context/UserContex';
+import FriendsContext from '../../context/FriendContex';
 
 export default function Content({docs}) {
     const {user}= useContext(UserContext)
+    const {friends} = useContext(FriendsContext)
     return (
         <section className="relative py-16 bg-gray-100">
             <div className="container max-w-7xl px-4 mx-auto">
@@ -18,7 +20,7 @@ export default function Content({docs}) {
                                 <div className="relative">
                                     <div className="w-40 -mt-20">
                                         <Image
-                                            src={"https://pbs.twimg.com/profile_images/1223706175910211584/tmu8d9fA.jpg"}
+                                            src="https://www.biography.com/.image/t_share/MTUxNzIxODgzNTg5NDIwMzAw/pewdiepie_gettyimages-501661286.jpg"
                                             alt="Profile picture"
                                             raised
                                             rounded
@@ -43,7 +45,7 @@ export default function Content({docs}) {
                                 <div className="flex justify-center py-4 lg:pt-4 pt-8">
                                     <div className="mr-4 p-3 text-center">
                                         <span className="text-xl font-bold block uppercase tracking-wide text-gray-900">
-                                            {user?.friends || 0}
+                                            {friends?.friends?.length || 0}
                                         </span>
                                         <span className="text-sm text-gray-700">
                                             Friends

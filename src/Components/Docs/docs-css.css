@@ -1,8 +1,8 @@
-.quill .ql-editor {
-    width: 80%;
+.quill .ql-container .ql-editor {
+    width: 90%;
     min-height: 600px;
     padding: .5em;
-    box-shadow: 0 0 5px 0 rgba(0, 0, 0, .5);
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, .8);
     background-color: white;
   }
   
@@ -12,24 +12,49 @@
     justify-content: center;
   }
   
-  #toolbar {
-    max-width: 450px;
+  .quill .ql-toolbar.ql-snow {
+    width: 100vh;
+    min-width: 100vh;
     display: flex;
-    justify-content: center;
-    z-index: 1;
-    background-color: #F3F3F3;
+    flex-wrap: wrap;
+    background-color: white;
     border: none;
-    box-shadow: 0 0 5px 0 rgba(0, 0, 0, .5);
+    box-shadow: 0 0 2px 0 rgba(0, 0, 0, .8);
+  }
+  .header-item{
+    padding: 3px;
+  }
+
+  .header-item:hover{
+    color: rgba(0, 0, 0, 0.333);
+    cursor: pointer;
+    transition: .25s ease-in-out;
+    background-color: #dddddde8;
   }
 
   @media only screen and (max-width: 762px) {
-    .quill .ql-editor {
-        width: 8.5in;
-        min-height: 11in;
-        padding: 1in;
-        margin: 1rem;
-        box-shadow: 0 0 5px 0 rgba(0, 0, 0, .5);
-        background-color: white;
+    .quill .ql-container .ql-editor {
+        width: 95%;
+        max-width: 800px;
+        min-height: 1000px;
+        padding: .8em;
+        margin: .8em;
+      }
+      
+      .quill .ql-container.ql-snow {
+        border: none;
+        display: flex;
+        justify-content: center;
+      }
+    
+  }
+
+  @media only screen and (min-width: 762px) {
+    .quill .ql-container .ql-editor {
+        padding: 1em;
+        max-width: 925px;
+        height: 1300px;
+        margin-top: 1em;
       }
       
       .quill .ql-container.ql-snow {
@@ -38,15 +63,11 @@
         justify-content: center;
       }
       
-      #toolbar {
-        max-width: 650px;
-        display: flex;
-        justify-content: center;
-        position: sticky;
-        top: 60px;
-        z-index: 1;
-        background-color: #F3F3F3;
-        border: none;
-        box-shadow: 0 0 5px 0 rgba(0, 0, 0, .5);
+       .text-editor .quill .ql-toolbar.ql-snow {
+        flex-wrap: nowrap;
+        min-width: 100vh;
+        width: fit-content;
+
       }
   }
+

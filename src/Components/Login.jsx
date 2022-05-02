@@ -14,8 +14,6 @@ import userLink from './helpers/UserAPI'
 export default function Login() {
     const {user, setUser}= useContext(UserContext)
 	let navigate = useNavigate();
-	const loginRef = useRef(null)
-	const errPassword = useRef(null)
 
 	const [errMessage, setErrMessage] = useState("")
     const [possibleUser, setPossibleUser] = useState({
@@ -44,19 +42,17 @@ export default function Login() {
 				body: JSON.stringify(possibleUser),
 			})
 			const loginResponse = await loginRequest.json()
-			if (loginRequest.status === 200) {
-				localStorage.setItem('token', loginResponse.token)
-				localStorage.setItem('user', JSON.stringify(loginResponse.user))
-				console.log(loginResponse)
+			if (loginResponse.success === true) {
+				localStorage.setItem('docs-token', loginResponse.data.token)
+				localStorage.setItem('docs-user', JSON.stringify(loginResponse.data.user))
 				setUser(loginResponse.user)
 				setPossibleUser({
-					username: '',
+					email: '',
 					password: ''
 				})
-				window.location.reload(false);
-				navigate("/", { replace: true });
+                navigate("/", { replace: true });
 			} else{
-				setErrMessage(loginResponse.non_field_errors)
+				setErrMessage(loginResponse.data)
 			}
 		}catch(err){
 			setErrMessage('Server Error')
@@ -64,7 +60,7 @@ export default function Login() {
 		
 	}
 	useEffect(() => {
-		const token = localStorage.getItem('token')
+		const token = localStorage.getItem('docs-token')
 		if(token){
 			navigate("/", { replace: true });
 		}
@@ -74,6 +70,7 @@ export default function Login() {
     return (
         <section className="w-96 mt-10">
             {errMessage && <p>{errMessage}</p>}
+            <form onSubmit={loginUser}>
             <Card>
             <CardHeader color="lightBlue" size="lg">
                 <H5 color="white">Login</H5>
@@ -82,22 +79,25 @@ export default function Login() {
             <CardBody>
                 <div className="mb-8 px-4">
                     <InputIcon
-                        type="text"
+                        type="email"
                         color="lightBlue"
                         placeholder="Username"
                         iconName="person"
-                        value={possibleUser.username}
+                        name="email"
+                        value={possibleUser.email}
                         onChange={updatePossibleUser}
-                        ref={loginRef}
                     />
                 </div>
                 <div className="mb-4 px-4">
                     <InputIcon
                         type="password"
                         color="lightBlue"
+                        name="password"
                         placeholder="password"
                         iconName="lock"
-                        ref={errPassword}
+                        value={possibleUser.password}
+                        onChange={updatePossibleUser}
+
 
                     />
                 </div>
@@ -115,6 +115,7 @@ export default function Login() {
                 </div>
             </CardFooter>
         </Card>
+        </form>
 
         </section>
         

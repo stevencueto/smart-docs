@@ -10,14 +10,17 @@ import NavItem from "@material-tailwind/react/NavItem";
 import NavLink from "@material-tailwind/react/NavLink";
 import Icon from "@material-tailwind/react/Icon";
 import img from '../img/smartdox-logo-main.png'
+import { useNavigate } from "react-router-dom";
 export default function Header() {
+    let navigate = useNavigate()
+
   const [openNavbar, setOpenNavbar] = useState(false);
 
   return (
     <Navbar color="lightBlue" navbar>
         <NavbarContainer>
             <NavbarWrapper>
-                <NavbarBrand>
+                <NavbarBrand onClick={()=>{navigate('/', {replace: true})}}>
                     <img  className="h-8" src={img} alt="" />
                 </NavbarBrand>
                 <NavbarToggler
@@ -40,6 +43,9 @@ export default function Header() {
                     </NavLink>
                     <NavItem ripple="light">
                         <Icon name="settings" size="xl" />
+                    </NavItem>
+                    <NavItem ripple="light" onClick={()=>{localStorage.clear(); navigate('/login', {replace: true}); window.location.reload();}}>
+                        <Icon name="lock" size="xl" />
                     </NavItem>
                 </Nav>
             </NavbarCollapse>

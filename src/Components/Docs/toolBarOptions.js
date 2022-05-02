@@ -1,3 +1,19 @@
+
+export const handlers = {
+    handlers:{
+    // handlers object will be merged with default handlers object
+    'link': function(value) {
+      if (value) {
+        var href = prompt('Enter the URL');
+        this.quill.format('link', href);
+      } else {
+        this.quill.format('link', false);
+      }
+    }
+  }
+}
+
+
 const  toolbarOptions = [
     ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
     ['blockquote', 'code-block'],

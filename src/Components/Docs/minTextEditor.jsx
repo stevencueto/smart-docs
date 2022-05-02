@@ -18,6 +18,17 @@ export default function MinEditor({doc}) {
     }
   }, [])
 
+  useEffect(()=>{
+    if(!socket || !editor) return 
+    const socketC = setInterval(() => {
+      socket.disconnect()
+    }, 2000)
+
+    return () => {
+      clearInterval( socketC )
+    }
+  }, [socket, editor])
+
   useEffect(() => {
     if (!socket || !editor) return
 
@@ -28,19 +39,6 @@ export default function MinEditor({doc}) {
     socket.emit('find-document', doc.data)
   }, [socket, editor, doc.data])
   
-
-  useEffect(() => {
-    if (!socket|| !editor) return
-
-    const handler = delta => {
-      editor.updateContents(delta)
-    }
-    socket.on('receive-changes', handler)
-
-    return () => {
-      socket.off('receive-changes', handler)
-    }
-  }, [socket, editor])
 
   const editorRef = useCallback(minEditor => {
     if (!minEditor) return

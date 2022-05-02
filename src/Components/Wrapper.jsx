@@ -86,7 +86,7 @@ const Wrapper = () => {
       })
       const res = await req.json()
       if(res.success === true){
-        const newDocs = docs.map(doc => doc._id !== edit._id ? doc : edit)
+        const newDocs = docs.map(doc => doc._id !== edit._id ? doc : res.data)
         console.log(newDocs)
         setDocs(newDocs)
       }
@@ -114,11 +114,34 @@ const Wrapper = () => {
       console.log(error)
     }
   }
+  const addToDoc = async(dox, friend)=>{
+    const friends = {friend: friend}
+    console.log(friends)
+    try {
+      const req = await fetch(`${docsLink}doc/add/${dox}`,  {
+        method: 'PUT',
+        body: JSON.stringify(friends),
+        headers: {
+          'x-access-token': localStorage.getItem('docs-token'),
+          'Content-Type': 'application/json',
+        }
+      })
+      const res = await req.json()
+      if(res.success === true){
+        const newDocs = docs.map(doc => doc._id !== dox ? doc : res.data)
+        console.log(newDocs)
+        setDocs(newDocs)
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   const {populateFriends, addFriend} = useContext(FriendsContext)
 
-  const provValue = useMemo(()=>({newDoc,newDocAPICall, editDocAPICall, deleteDocAPICall, docs, handleChange}), [newDoc,handleChange,newDocAPICall, editDocAPICall, deleteDocAPICall, docs])
+  const provValue = useMemo(()=>({newDoc,newDocAPICall, editDocAPICall, deleteDocAPICall, docs, handleChange, addToDoc}), [newDoc,handleChange,newDocAPICall, editDocAPICall, deleteDocAPICall, docs])
   useEffect(()=>{
-    addFriend("626ea5c89ba30da39354276c")
+    // addFriend("626ea5c89ba30da39354276c")
     populateFunction()
     populateFriends()
   }, [])

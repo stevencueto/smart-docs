@@ -3,11 +3,14 @@ import { useNavigate } from 'react-router-dom'
 import './register.css'
 import userLink from '../helpers/UserAPI'
 import Form from 'react-bootstrap/Form'
-import { Button, Container, Col} from 'react-bootstrap'
+import Button from '@material-tailwind/react/Button'
 import UserContext from '../../context/UserContex'
+import CardBody from '@material-tailwind/react/CardBody'
+import H5 from '@material-tailwind/react/Heading5'
+import Card from '@material-tailwind/react/Card'
+import CardHeader from '@material-tailwind/react/CardHeader'
 const Register = ()=> {
 	const {setUser}= useContext(UserContext)
-
 	let navigate = useNavigate();
 	const userNameRef = useRef(null);
 	const emailRef = useRef(null);
@@ -92,8 +95,7 @@ const Register = ()=> {
 				localStorage.setItem('docs-token', fetchedUser.data.token);
 				localStorage.setItem('docs-user', JSON.stringify(fetchedUser.data.user));
 				setUser(fetchedUser.user)
-				window.location.reload(false);
-				navigate("/all", { replace: true })
+				navigate("/", { replace: true })
 			} else{
 				if(fetchedUser.data === "User Already Exist!"){
 					setErrMessage(fetchedUser.data);
@@ -125,23 +127,23 @@ const Register = ()=> {
 	},[newUser.username])
 
 	return (
-<Container
-className="d-flex justify-content-center align-items-center flex-direction-column"
-style={{ minHeight: "100vh" }}
->
-  <Col>
-		<h1 className='heading'>Register</h1>
+		<section className='w-96 mt-10 mb-20'>
+<Card>
+		<CardHeader color="lightBlue" size="lg">
+                <H5 color="white">Login</H5>
+            </CardHeader>
 		{ errMessage && <p className='error-mesage'>
 				{errMessage}
 		</p> }
+		<CardBody>
   <Form className='form-react' onSubmit={(e) => registerUser(e)}>
 	  <Form.Group className="mb-3" controlId="formBasicEmail">
-		  <Form.Label>Username</Form.Label>
+		  <Form.Label>Username</Form.Label><br/>
 		  <Form.Control
 		  value={newUser.username}
 		  onChange={updateNewUser}
 		  type="text"
-		  placeholder="Username"
+		  placeholder="type here"
 		  name="username"
 		  ref={userNameRef}
 		  onFocus={()=> setUserInstructions(true)}
@@ -158,11 +160,11 @@ style={{ minHeight: "100vh" }}
     </Form.Text>
 	}
 	  <Form.Group className="mb-3" controlId="formBasicEmail">
-		  <Form.Label>Email</Form.Label>
+		  <Form.Label>Email</Form.Label><br/>
 		  <Form.Control type="email"
 		  value={newUser.email}
 		  onChange={updateNewUser}
-		  placeholder="Email"
+		  placeholder="type here"
 		  name="email"
 		  ref={emailRef}
 		  required
@@ -170,11 +172,11 @@ style={{ minHeight: "100vh" }}
 	  </Form.Group>
 
 	  <Form.Group className="mb-3">
-		  <Form.Label>Name</Form.Label>
+		  <Form.Label>Name</Form.Label><br/>
 		  <Form.Control type="name"
 		  value={newUser.name}
 		  onChange={updateNewUser}
-		  placeholder="Name"
+		  placeholder="type here"
 		  name="name"
 		  ref={emailRef}
 		  required
@@ -187,7 +189,7 @@ style={{ minHeight: "100vh" }}
 		  value={newUser.password}
 		  onChange={ (e)=> updateNewUser(e)}
 		  type="password"
-		  placeholder="Password"
+		  placeholder="type here"
 		  name="password"
 		  onFocus={() => setPasswordInstructions(true)}
 		  onBlur={() => setPasswordInstructions(false)}
@@ -205,12 +207,12 @@ style={{ minHeight: "100vh" }}
     </Form.Text>
 	}
 	<Form.Group className="mb-3" controlId="formBasicPassword">
-		  <Form.Label>Confirm Password</Form.Label>
+		  <Form.Label>Confirm Password</Form.Label><br/>
 		  <Form.Control 
 		  value={newUser.confirmPassword}
 		  onChange={ (e) => updateNewUser(e)}
 		  type="password"
-		  placeholder="Password"
+		  placeholder="type here"
 		  name="confirmPassword"
 		  required
 		  onFocus={()=> setConfirmPasswordInstruction(true)}
@@ -226,12 +228,18 @@ style={{ minHeight: "100vh" }}
 				</Form.Text>
 				}
 				
-	  <Button variant="primary" type="submit" className='btn-other' >
-		  Submit
-	  </Button>
+					<Button
+                        color="lightBlue"
+                        buttonType="link"
+                        size="lg"
+                        ripple="dark"
+                    >
+                        Register
+                    </Button>
   </Form>
-  </Col>
-  </Container>
+  </CardBody>
+  </Card>
+  </section>
 	)
 }
 

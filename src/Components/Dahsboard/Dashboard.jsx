@@ -1,10 +1,14 @@
 import DocsContainer from './DocsContainer.jsx'
 import {useEffect} from "react"
-import H6 from "@material-tailwind/react/Heading2";
 import ModalNew from './ModalNew.jsx';
+import { useNavigate } from 'react-router-dom';
 
 function Dashboard(props) {
-  useEffect(()=>{props.handleShow(true)},[])
+  let navigate = useNavigate()
+  useEffect(()=>{
+    if(!localStorage.getItem('docs-token')) navigate('/login', {replace: true}) 
+    props.handleShow(true)
+  },[])
   return (
     <section style={{ minHeight: '80vh'}}>
       <h3 className='text-lg text-center my-4'>Your Documents </h3>
