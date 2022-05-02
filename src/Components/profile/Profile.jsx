@@ -6,7 +6,7 @@ import SelectMenu from './ProfilePic'
 export default function Profile(props) {
   let navigate = useNavigate()
   useEffect(()=>{
-    if(!localStorage.getItem('docs-token'))navigate('/register', {replace: true})
+    navigate('/', {replace: true})
   }, [])
   return (
     <section className='mt-20'> 
