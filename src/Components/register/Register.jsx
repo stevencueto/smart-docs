@@ -75,12 +75,13 @@ const Register = ()=> {
 	}, [])
 
 	const registerUser = async(e) =>{
+		console.log(e)
+		e.preventDefault();
 		if(newUser.password !== newUser.confirmPassword){
 			passwordRef.current.focus();
 		}
 		newUser.confirmPassword = null;
 		console.log(newUser)
-		e.preventDefault();
 		try{
 			const userRequest = await fetch(`${userLink}auth/register`, {
 				method: 'POST',
@@ -178,7 +179,6 @@ const Register = ()=> {
 		  onChange={updateNewUser}
 		  placeholder="type here"
 		  name="name"
-		  ref={emailRef}
 		  required
 		  autoComplete="off"/>
 	  </Form.Group>
@@ -191,6 +191,7 @@ const Register = ()=> {
 		  type="password"
 		  placeholder="type here"
 		  name="password"
+		  ref={passwordRef}
 		  onFocus={() => setPasswordInstructions(true)}
 		  onBlur={() => setPasswordInstructions(false)}
 		  required
