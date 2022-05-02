@@ -6,6 +6,9 @@
     font-size: 1em;
     text-align: center;
 }
+.mb-3 .form-control{
+    border: 1px solid black;
+}
 .error-mesage{
     color: rgba(235, 26, 26, 0.74);
     margin-top: 1.8em;
