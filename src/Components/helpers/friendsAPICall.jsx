@@ -1,7 +1,7 @@
 let friendsLink
 
 const apiUrls = {
-    production: "",
+    production: "https://smart-docx-friends-server.herokuapp.com/",
     development: "http://localhost:3004/"
 }
 

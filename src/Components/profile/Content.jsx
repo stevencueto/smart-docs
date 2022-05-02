@@ -72,7 +72,7 @@ export default function Content({docs}) {
                         </div>
 
                         <div className="text-center my-8">
-                            <H3 color="gray">{`${user?.firstName} ${user?.lastName}`}</H3>
+                            <H3 color="gray">{`${user?.username}`}</H3>
                             <div className="mt-0 mb-2  text-gray-700 font-medium">
                                 <span className='mr-4'>
                                 <Icon name="place" size="xl" />
