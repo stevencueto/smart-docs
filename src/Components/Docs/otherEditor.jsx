@@ -49,7 +49,7 @@ export const Editor = (props) => {
    
   
     useEffect(() => {
-      if(!localStorage.getItem('docs-token')) navigate('/login', {replace: true}) 
+      if(!localStorage.getItem('docs-token')) navigate('/register', {replace: true}) 
       const socketConection = io(socketLink, { transports : ['websocket'] ,auth: {
           token: token
       }})

@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 function Dashboard(props) {
   let navigate = useNavigate()
   useEffect(()=>{
-    if(!localStorage.getItem('docs-token')) navigate('/login', {replace: true}) 
+    if(!localStorage.getItem('docs-token')) navigate('/register', {replace: true}) 
     props.handleShow(true)
   },[])
   return (
