@@ -80,7 +80,9 @@ The models the app will have will be: const Document = new Schema({ data:{type: 
 
 This App is a microservices app
 
-docs api link [https://smart-docs-doc-server.herokuapp.com/]
-friends api [https://smart-docx-friends-server.herokuapp.com/]
-socket api [https://smart-docs-socket-data.herokuapp.com/]
+docs api link [https://smart-docs-doc-server.herokuapp.com/][https://github.com/stevencueto/smart-docs-backend]
+friends api [https://smart-docx-friends-server.herokuapp.com/][https://github.com/stevencueto/smart-docs-friends]
+socket api [https://smart-docs-socket-data.herokuapp.com/][https://github.com/stevencueto/smart-docxs-doc-io-server]
+[https://github.com/stevencueto/smart-docs-server-documents]
+[https://github.com/stevencueto/smart-docs-backend]
 user api [https://smartdocxs-api-auth.herokuapp.com/]
