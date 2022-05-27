@@ -131,7 +131,7 @@ const Register = ()=> {
 		<section className='w-96 mt-10 mb-20'>
 <Card>
 		<CardHeader color="lightBlue" size="lg">
-                <H5 color="white">Login</H5>
+                <H5 color="white">Register</H5>
             </CardHeader>
 		{ errMessage && <p className='error-mesage'>
 				{errMessage}

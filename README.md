@@ -76,3 +76,11 @@ Smart Docs is a google docs clone app but better, that would allow users to stor
 The models the app will have will be: const Document = new Schema({ data:{type: Object}, user: { type: Schema.Types.ObjectId, ref: "User", required: true, }, allowedUsers:[ { type: Schema.Types.ObjectId, ref: 'Document', } ], public:[ { type: Boolean, default: false, } ], }) }) , const User = new Schema({ name: { type: String, required: true, min: 5 },documensts:[ }, email:{ type: String, }, password:{ type:String, required: true, }, profilePicture: { type: Image },})
 
 #Stretch Goals: social meadia login, have multiple users edit the same file at the same time, improve prevous projects, Three.js integration
+
+
+This App is a microservices app
+
+docs api link [https://smart-docs-doc-server.herokuapp.com/]
+friends api [https://smart-docx-friends-server.herokuapp.com/]
+socket api [https://smart-docs-socket-data.herokuapp.com/]
+user api [https://smartdocxs-api-auth.herokuapp.com/]
